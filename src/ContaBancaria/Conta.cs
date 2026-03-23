@@ -44,8 +44,12 @@ public class Conta
     /// </summary>
     public void Depositar(decimal valor)
     {
-        // TODO: Implemente usando TDD
-        throw new NotImplementedException();
+        if (valor <= 0)
+            throw new ArgumentException("O valor de depósito deve ser maior que zero.", nameof(valor));
+        if (!Ativa)
+            throw new InvalidOperationException("Não é possível depositar em uma conta inativa.");
+
+        Saldo += valor;
     }
 
     /// <summary>
@@ -58,8 +62,14 @@ public class Conta
     /// </summary>
     public void Sacar(decimal valor)
     {
-        // TODO: Implemente usando TDD
-        throw new NotImplementedException();
+        if (valor <= 0)
+            throw new ArgumentException("O valor de saque deve ser maior que zero.", nameof(valor));
+        if (!Ativa)
+            throw new InvalidOperationException("Não é possível sacar de uma conta inativa.");
+        if (valor > Saldo)
+            throw new InvalidOperationException("Saldo insuficiente para realizar o saque.");
+
+        Saldo -= valor;
     }
 
     /// <summary>
@@ -72,8 +82,17 @@ public class Conta
     /// </summary>
     public void Transferir(Conta destino, decimal valor)
     {
-        // TODO: Implemente usando TDD
-        throw new NotImplementedException();
+        if (valor <= 0)
+            throw new ArgumentException("O valor da transferência deve ser maior que zero.", nameof(valor));
+        if (!Ativa)
+            throw new InvalidOperationException("Não é possível transferir de uma conta inativa.");
+        if (!destino.Ativa)
+            throw new InvalidOperationException("Não é possível transferir para uma conta inativa.");
+        if (valor > Saldo)
+            throw new InvalidOperationException("Saldo insuficiente para realizar a transferência.");
+
+        Sacar(valor);
+        destino.Depositar(valor);
     }
 
     /// <summary>
@@ -85,7 +104,11 @@ public class Conta
     /// </summary>
     public void Encerrar()
     {
-        // TODO: Implemente usando TDD
-        throw new NotImplementedException();
+        if (!Ativa)
+            throw new InvalidOperationException("A conta já está inativa.");
+        if (Saldo != 0)
+            throw new InvalidOperationException("Só é possível encerrar uma conta com saldo zero.");
+
+        Ativa = false;
     }
 }

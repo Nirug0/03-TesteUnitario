@@ -1,0 +1,134 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                  ATIVIDADE TDD - CONTA BANCÁRIA                              ║
+║                    RESUMO DE ENTREGA - 23/03/2026                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 RESULTADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✅ Total de Testes:           27
+  ✅ Testes Passando:           27/27 (100%)
+  ✅ Testes Falhando:           0
+  ✅ Métodos Implementados:     5/5 (Construtor, Depositar, Sacar, Transferir, Encerrar)
+  ✅ Tempo de Execução:         2.44 segundos
+  ✅ Status da Entrega:         COMPLETO ✓
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 TESTES IMPLEMENTADOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Construtor] 6 testes
+  ✅ DadosValidos_CriaContaCorretamente
+  ✅ SemSaldoInicial_CriaContaComSaldoZero
+  ✅ TitularNulo_LancaArgumentException
+  ✅ TitularVazio_LancaArgumentException
+  ✅ SaldoNegativo_LancaArgumentException
+  ✅ VariosValoresValidos_CriaContaCorretamente (Theory x3)
+
+[Depositar] 4 testes
+  ✅ ValorValido_AtualizaSaldo
+  ✅ ValorZero_LancaArgumentException
+  ✅ ValorNegativo_LancaArgumentException
+  ✅ ContaInativa_LancaInvalidOperationException
+
+[Sacar] 5 testes
+  ✅ ValorValido_AtualizaSaldo
+  ✅ ValorMaiorQueSaldo_LancaInvalidOperationException
+  ✅ ValorZero_LancaArgumentException
+  ✅ ValorNegativo_LancaArgumentException
+  ✅ ContaInativa_LancaInvalidOperationException
+
+[Transferir] 6 testes
+  ✅ ValorValido_AtualizaSaldoAmbas
+  ✅ SaldoInsuficiente_LancaInvalidOperationException
+  ✅ ValorZero_LancaArgumentException
+  ✅ ValorNegativo_LancaArgumentException
+  ✅ ContaOrigemInativa_LancaInvalidOperationException
+  ✅ ContaDestinoInativa_LancaInvalidOperationException
+
+[Encerrar] 4 testes
+  ✅ SaldoZero_Funciona
+  ✅ ComSaldo_LancaInvalidOperationException
+  ✅ ContaJaInativa_LancaInvalidOperationException
+  ✅ ContaEncerada_AtivaFalso
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📁 ARQUIVOS DO PROJETO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+03-TesteUnitario/
+├── src/ContaBancaria/
+│   ├── Conta.cs ........................... ✅ IMPLEMENTADO (5 métodos)
+│   ├── ContaBancaria.csproj
+│   └── bin/Debug/net10.0/
+│       └── ContaBancaria.dll
+├── tests/ContaBancaria.Tests/
+│   ├── ContaTests.cs ...................... ✅ 27 TESTES
+│   ├── ContaBancaria.Tests.csproj
+│   └── bin/Debug/net10.0/
+│       └── ContaBancaria.Tests.dll
+├── resultado-testes.txt ................... ✅ EVIDÊNCIA (11 KB)
+├── EVIDENCIAS.md .......................... ✅ DOCUMENTAÇÃO
+├── COMMIT_GUIDE.md ........................ ℹ️  INSTRUÇÕES DE COMMIT
+└── RESUMO_ENTREGA.txt ..................... 📄 ESTE ARQUIVO
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔄 CICLO TDD APLICADO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Red → Green → Refactor (para cada método)
+
+1. CONSTRUTOR ✅
+   🔴 RED:     Testes falham (sem implementação)
+   🟢 GREEN:   Implementa validações
+   🔵 REFACTOR: Código limpo e eficiente
+
+2. DEPOSITAR ✅
+   🔴 RED:     4 testes falhando
+   🟢 GREEN:   Implementa com validações
+   🔵 REFACTOR: Validação estruturada
+
+3. SACAR ✅
+   🔴 RED:     5 testes falhando
+   🟢 GREEN:   Implementa com saldo check
+   🔵 REFACTOR: Código reutilizável
+
+4. TRANSFERIR ✅
+   🔴 RED:     6 testes falhando
+   🟢 GREEN:   Usa Sacar e Depositar
+   🔵 REFACTOR: Composição de métodos
+
+5. ENCERRAR ✅
+   🔴 RED:     4 testes falhando
+   🟢 GREEN:   Implementa com validações
+   🔵 REFACTOR: Validação de estado
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 TÉCNICAS xUnit UTILIZADAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ✅ [Fact] ................... Testes com valores fixos
+  ✅ [Theory] + [InlineData] .. Testes parametrizados (3 variações)
+  ✅ Assert.Equal() ........... Comparação de valores
+  ✅ Assert.True/False() ...... Validação de booleanos
+  ✅ Assert.Throws<T>() ....... Validação de exceções
+  ✅ Padrão AAA ............... Arrange, Act, Assert
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📤 PRÓXIMAS AÇÕES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Fazer commit (já está no staging):
+   git commit -m "Atividade TDD: Conta Bancária com 27 testes completos"
+
+2. Fazer push:
+   git push origin main
+
+3. Verificar no GitHub:
+   → Ir para: github.com/QualidadeSoftware/03-TesteUnitario
+   → Deve aparecer novo commit na branch main
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✨ STATUS: PRONTO PARA ENTREGA ✨
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
